@@ -26,4 +26,24 @@ class UserStoreTest extends TestCase
         $this->assertEquals('nick', $user['name']);
         $this->assertEquals('12345', $user['pass']);
     }
+
+    public function testAddUserShortPass(): void
+    {
+//        $this->expectException(\Exeption::class); ??
+//        $this->store->addUser("name", "email","1234");
+
+        try {
+            $this->store->addUser("name", "email","1234");
+        }
+        catch (\Exception $e)
+        {
+            $this->assertEquals(
+                "password is short",
+                $e->getMessage()
+            );
+            return;
+        }
+
+        $this->fail("text text");
+    }
 }
